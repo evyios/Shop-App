@@ -11,8 +11,9 @@ import SwiftUI
 let customFont = "Raleway-Regular"
 
 struct OnBoardingScreen: View {
-   //Showing login page
+ 
     @State var showLoginPage: Bool = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Find your\nWine")
@@ -65,8 +66,8 @@ struct OnBoardingScreen_Previews: PreviewProvider {
     }
 }
 
-//Extending View to get screen size
 
+//Extending View to get screen size
 extension View {
     func getRect() -> CGRect {
         return UIScreen.main.bounds

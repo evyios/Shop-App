@@ -13,7 +13,7 @@ struct ProductDetailView: View {
     //For matched Geometry Effect...
     var animation: Namespace.ID
     
-    //Shared Data Model
+    
     @EnvironmentObject var sharedData: SharedDataModel
     
     @EnvironmentObject var homeData: HomeViewModel
@@ -48,7 +48,7 @@ struct ProductDetailView: View {
                 .padding(10)
                 .padding(.trailing,-8)
                 
-                //Product Image
+                
                 Image(product.productImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -61,7 +61,7 @@ struct ProductDetailView: View {
             .zIndex(1)
             
             ScrollView(.vertical, showsIndicators: false) {
-                //Product Data
+               
                 VStack(alignment: .leading, spacing: 15) {
                     
                     Text(product.title)
@@ -75,7 +75,7 @@ struct ProductDetailView: View {
                         .font(.custom(customFont, size: 16).bold())
                         .padding(.top)
                     
-                    Text("There is not a single doubt that wine plays an important role in умукн culture. For centuries, generation after generation have perfected the art of wine making.")
+                    Text("There is not a single doubt that wine plays an important role in every culture. For centuries, generation after generation have perfected the art of wine making.")
                         .font(.custom(customFont, size: 15))
                         .foregroundColor(.gray)
                     
@@ -165,7 +165,7 @@ struct ProductDetailView: View {
         if let index = sharedData.cartProducts.firstIndex(where: { product in
             return self.product.id == product.id
         }) {
-            //Remove from cart...
+            // Remove from cart...
             sharedData.cartProducts.remove(at: index)
         } else {
             // Add to cart
@@ -176,10 +176,7 @@ struct ProductDetailView: View {
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        //Sample product
-//        ProductDetailView(product: HomeViewModel().products[0])
-//            .environmentObject(SharedDataModel())
-    MainPage()
+        MainPage()
     }
 }
 

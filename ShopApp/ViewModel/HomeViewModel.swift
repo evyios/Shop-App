@@ -6,15 +6,12 @@
 //
 
 import SwiftUI
-
-//using Combine to monitor search field and if user leaves for 5 sec than starts searching
-//to avoid memory issue
 import Combine
 
 class HomeViewModel: ObservableObject {
     @Published var productType: ProductType = .Italy
     
-    //Sample product
+
     @Published var products: [Product] = [
         Product(type: .Italy, title: "Chianti Classico", subtitle: "Red", price: "359$", productImage: "chianti"),
         Product(type: .Italy, title: "Fiano di Avellino", subtitle: "Red", price: "180$", productImage:  "fiano"),
@@ -30,13 +27,13 @@ class HomeViewModel: ObservableObject {
         Product(type: .Spain, title: "Vinos de Pago", subtitle: "Red", price: "500$", productImage: "Vinos"),
     ]
     
-    //Filtered products
+ 
     @Published var filteredProduct: [Product] = []
     
-    //More products on the type
+   
     @Published var showMoreProductsOnType: Bool = false
     
-    //Search data
+
     @Published var searchText: String = ""
     @Published var searchActivated: Bool = false
     @Published var searchedProducts: [Product]?
@@ -60,12 +57,10 @@ class HomeViewModel: ObservableObject {
     func filterProductByType() {
         DispatchQueue.global(qos: .userInteractive).async {
             let results = self.products
-            //Since it will require more memory so were using lazy to perform more
                 .lazy
                 .filter { product in
                     return product.type == self.productType
                 }
-            // Limiting results
                 .prefix(4)
             
             DispatchQueue.main.async {
@@ -79,7 +74,6 @@ class HomeViewModel: ObservableObject {
     func filterProductBySearch() {
         DispatchQueue.global(qos: .userInteractive).async {
             let results = self.products
-            //Since it will require more memory so were using lazy to perform more
                 .lazy
                 .filter { product in
                     return product.title.lowercased().contains(self.searchText.lowercased())

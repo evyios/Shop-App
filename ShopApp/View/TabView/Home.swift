@@ -12,8 +12,7 @@ struct Home: View {
     
     @State var showMenu = false
     @State var selectedTab = "House"
-    
-    //Shared Data...
+
     @EnvironmentObject var sharedData: SharedDataModel
     @StateObject var homeData = HomeViewModel()
     
@@ -21,7 +20,6 @@ struct Home: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 15) {
                 
-                //Search Bar
                 ZStack {
                     if homeData.searchActivated {
                         SearchBar()
@@ -39,7 +37,7 @@ struct Home: View {
                     .padding(.top)
                     .padding(.horizontal,25)
                 
-                //Product Tabs...
+                
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 18) {
                         ForEach(ProductType.allCases, id: \.self) { type in
@@ -50,11 +48,12 @@ struct Home: View {
                     .padding(.horizontal,25)
                 }
                 .padding(.top,28)
-                //Products pade
+                
+                
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 25) {
                         ForEach(homeData.filteredProduct) { product in
-                            //Product Card View
+                          
                             ProductCardView(product: product)
                         }
                     }
@@ -64,7 +63,6 @@ struct Home: View {
                 }
                 .padding(.top,30)
                 
-                //See more button
                 Button {
                     homeData.showMoreProductsOnType.toggle()
                 } label: {
@@ -89,13 +87,11 @@ struct Home: View {
         .onChange(of: homeData.productType) { newValue in
             homeData.filterProductByType()
         }
-        //Preview issue
         .sheet(isPresented: $homeData.showMoreProductsOnType) {
             
         } content: {
             MoreProductsView()
         }
-        //Displaying Search View
         .overlay(
             ZStack {
                if homeData.searchActivated {
@@ -140,7 +136,6 @@ struct Home: View {
                 }
             }
                 .frame(width: getRect().width / 2.5, height: getRect().width / 2.5)
-            //Moving image to top to look like its fixed at half top
                 .offset(y: -80)
                 .padding(.bottom, -80)
             
@@ -165,7 +160,6 @@ struct Home: View {
             Color.white
                 .cornerRadius(25)
         )
-        //Showing Product Detail When Tapped
         .onTapGesture {
             withAnimation(.easeOut) {
                 sharedData.detailProduct = product
@@ -184,12 +178,9 @@ struct Home: View {
             Text(type.rawValue)
                 .font(.custom(customFont, size: 15))
                 .fontWeight(.semibold)
-            //Changing color based on Current product type
                 .foregroundColor(homeData.productType == type ? Color("purple") : Color.gray)
                 .padding(.bottom,10)
-            //Adding indicator at bottom
                 .overlay(
-                    //Adding matched geometry effect...
                     ZStack {
                         if homeData.productType == type {
                             Capsule()

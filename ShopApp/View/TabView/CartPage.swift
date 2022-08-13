@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct CartPage: View {
+    
     @EnvironmentObject var sharedData: SharedDataModel
     
-    //Delete option
     @State var showDeleteOption: Bool = false
+    
     var body: some View {
         
         NavigationView {
@@ -83,7 +84,6 @@ struct CartPage: View {
                     .padding()
                 }
                 
-                //Showing Total and Check Out Button...
                 if !sharedData.cartProducts.isEmpty {
                     Group {
                         
@@ -134,7 +134,7 @@ struct CartPage: View {
             return product.id == currentProduct.id
         }) {
             let _ = withAnimation {
-                //removing...
+            
                 sharedData.cartProducts.remove(at: index)
             }
         }
@@ -149,7 +149,7 @@ struct CartPage_Previews: PreviewProvider {
 
 struct CardView: View {
     
-    //Making Product as Binding so as to update in Real time...
+    
     @Binding var product: Product
     
     var body: some View {
@@ -171,7 +171,7 @@ struct CardView: View {
                     .fontWeight(.semibold)
                     .foregroundColor(Color("purple"))
                 
-               //Quantity Buttons...
+               
                 HStack(spacing: 10) {
                     
                     Text("Quantity")

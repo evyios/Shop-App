@@ -10,12 +10,11 @@ import SwiftUI
 struct LikedPage: View {
     @EnvironmentObject var sharedData: SharedDataModel 
     
-    //Delete option
     @State var showDeleteOption: Bool = false
+    
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
-                
                 VStack {
                     
                     HStack {
@@ -126,7 +125,7 @@ struct LikedPage: View {
             return product.id == currentProduct.id
         }) {
             let _ = withAnimation {
-                //removing...
+                
                 sharedData.likedProducts.remove(at: index)
             }
         }

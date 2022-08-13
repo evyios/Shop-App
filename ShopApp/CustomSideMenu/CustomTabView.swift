@@ -15,9 +15,7 @@ struct CustomTabView: View {
         VStack {
             //Static header view for all pages...
             HStack {
-                //Menu button...
                 Button {
-                    //Toggling Menu Option...
                     withAnimation(.spring()) {
                         showMenu = true
                     }
@@ -33,12 +31,10 @@ struct CustomTabView: View {
                 Spacer()
                 
             }
-            //Page title...
             .overlay(
                 Text(currentTab)
                     .font(.title2.bold())
                     .foregroundColor(.black)
-                //Same hiding when menu is visible...
                     .opacity(showMenu ? 0 : 1)
             )
             .padding([.horizontal, .top])
@@ -72,7 +68,6 @@ struct CustomTabView: View {
         .overlay(
             //Close Button
             Button {
-                //Toggling Menu Option...
                 withAnimation(.spring()) {
                     showMenu = false
                 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct MoreProductsView: View {
     var body: some View {
         VStack {
-            Text("More Products")
+            Text("Sales")
                 .font(.custom(customFont, size: 24).bold())
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity, alignment: .leading)

@@ -58,7 +58,6 @@ struct SideMenu: View {
         )
     }
     
-    //Custom Button...
     @ViewBuilder
     func CustonTabButton(icon: String, title: String) -> some View {
         Button {

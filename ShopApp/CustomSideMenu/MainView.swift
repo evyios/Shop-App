@@ -9,10 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     
-    //Current Tab...
     @State var currentTab: String = "Home"
     
-    //Menu option...
     @State var showMenu: Bool = false
     
     //Hidden native tab bar...
@@ -21,7 +19,7 @@ struct MainView: View {
     }
     var body: some View {
         ZStack {
-            //Custom Side Menu...
+            // Custom Side Menu...
             SideMenu(currentTab: $currentTab)
             
             ZStack {
@@ -29,7 +27,6 @@ struct MainView: View {
                 Color.white
                     .opacity(0.5)
                     .cornerRadius(showMenu ? 15 : 0)
-                //Shadow
                     .shadow(color: Color.black.opacity(0.07), radius: 5, x: -5, y: 0)
                     .offset(x: showMenu ? -37 : 0)
                     .padding(.vertical,30)
@@ -48,10 +45,9 @@ struct MainView: View {
                 .offset(x: showMenu ? getRect().width - 120 : 0)
                 .ignoresSafeArea()
                            
-            //Main Tab View...
             CustomTabView(currentTab: $currentTab, showMenu: $showMenu)
                 .cornerRadius(showMenu ? 25 : 0)
-            //Making 3d rotating...
+
                 .scaleEffect(showMenu ? 0.84 : 1)
                 .ignoresSafeArea()
                 .onTapGesture {
@@ -60,11 +56,8 @@ struct MainView: View {
                     }
                 }
             
-            //Moving View Apart...
                 .offset(x: showMenu ? getRect().width / 1.5 : 0)
         }
-        //Always dark mode
-        //.preferredColorScheme(.dark)
     }
 }
 

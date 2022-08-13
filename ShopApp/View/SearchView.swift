@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchView: View {
     var animation: Namespace.ID
     
-    //Shared Data
+
     @EnvironmentObject var sharedData: SharedDataModel
     
     @EnvironmentObject var homeData: HomeViewModel
@@ -19,22 +19,22 @@ struct SearchView: View {
     @FocusState var startTF: Bool
     var body: some View {
         VStack(spacing: 0) {
-            //Search bar
+            
             HStack(spacing: 20) {
-                //Close button
+                
                 Button {
                     withAnimation {
                         homeData.searchActivated = false
                     }
                     homeData.searchText = ""
-                    //Resetting...
                     sharedData.fromSearchPage = false
+                    
                 } label: {
                     Image(systemName: "arrow.left")
                         .font(.title2)
                         .foregroundColor(Color.black.opacity(0.7))
                 }
-//Searching bar
+
                 HStack(spacing: 15) {
                     Image(systemName: "magnifyingglass")
                         .font(.title2)
@@ -57,11 +57,10 @@ struct SearchView: View {
             .padding(.top)
             .padding(.bottom,10)
             
-            //Showing progress if searching
-            //else showing no results found if empty
+            
             if let products = homeData.searchedProducts {
                 if products.isEmpty {
-                    //No results found
+                    
                     VStack(spacing: 10) {
                         Image("not found")
                             .resizable()
@@ -79,7 +78,7 @@ struct SearchView: View {
                     }
                     .padding()
                 } else {
-                    //Filter results
+                   
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 0) {
                             
@@ -88,7 +87,7 @@ struct SearchView: View {
                                 .padding(.vertical)
                             
                             StaggeredGrid(columns: 2,spacing: 20, list: products) { product in
-                                //Card View
+                                
                                 ProductCardView(product: product)
                             }
                         }
@@ -130,7 +129,6 @@ struct SearchView: View {
                 }
             }
                 
-            //Moving image to top to look like its fixed at half top
             .offset(y: -50)
             .padding(.bottom, -50)
             

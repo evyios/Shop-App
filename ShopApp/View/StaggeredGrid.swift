@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-//Custom View Builder
-//T -> is to hold identifiable collection of data
 
 struct StaggeredGrid<Content: View, T: Identifiable>: View where T: Hashable {
     
@@ -48,7 +46,7 @@ struct StaggeredGrid<Content: View, T: Identifiable>: View where T: Hashable {
     var body: some View {
         HStack(alignment: .top, spacing: 20) {
             ForEach(setUpList(), id: \.self) { columnsData in
-                //For optimized using lazyStack
+    
                 LazyVStack(spacing: spacing) {
                     ForEach(columnsData) { object in
                         content(object)

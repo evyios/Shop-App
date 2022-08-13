@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct LoginPade: View {
-    @StateObject var loginData = LoginPageModel()
+    
+    @StateObject var loginData: LoginPageModel = .init()
+    
     var body: some View {
         VStack {
-            //Welcome back text for 3 half of the screen
             Text("Welcome\nback")
                 .font(.custom(customFont, size: 55).bold())
                 .foregroundColor(.white)
@@ -20,7 +21,7 @@ struct LoginPade: View {
                 .padding()
                 .background(
                     ZStack {
-                        //Gradient Circle
+                       
                         LinearGradient(colors: [
                             Color("round"),
                             Color("round")
@@ -50,9 +51,8 @@ struct LoginPade: View {
                     }
                 )
             
-            
             ScrollView(.vertical, showsIndicators: false) {
-                // Login page form...
+               
                 VStack(spacing: 15) {
                     Text(loginData.registerUser ? "Register" : "Login")
                         .font(.custom(customFont, size: 22).bold())
@@ -65,12 +65,12 @@ struct LoginPade: View {
                     CustomTextField(icon: "lock", title: "Password", hint: "", value: $loginData.password, showPassword: $loginData.showPassword)
                         .padding(.top,10)
                     
-                    //Register reenter Password
+                   
                     if loginData.registerUser {
                         CustomTextField(icon: "envelope", title: "Re-Enter Password", hint: "", value: $loginData.re_Enter_Password, showPassword: $loginData.showReEnterPassword)
                             .padding(.top,10)
                     }
-                    //Forgot password button
+                    
                     Button {
                         loginData.ForgetPassword()
                     } label: {
@@ -82,7 +82,7 @@ struct LoginPade: View {
                     .padding(.top,8)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    //Login Button
+                    
                     Button {
                         if loginData.registerUser {
                             loginData.Register()
@@ -95,14 +95,13 @@ struct LoginPade: View {
                             .padding(.vertical,20)
                             .frame(maxWidth: .infinity)
                             .foregroundColor(.white)
-                            .background(Color("purple"))
-                            .cornerRadius(15)
+                            .background(Color("purple"), in: RoundedRectangle(cornerRadius: 15))
                             .shadow(color: Color.black.opacity(0.07), radius: 5, x: 5, y: 5)
                     }
                     .padding(.top,25)
                     .padding(.horizontal)
                     
-                    //Register user button...
+                    
                     Button {
                         withAnimation {
                             loginData.registerUser.toggle()
@@ -120,7 +119,6 @@ struct LoginPade: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(
                 Color.white
-                //Applying custom corners..
                     .clipShape(CustomCorner(corners: [.topLeft, .topRight], radius: 25))
                     .ignoresSafeArea()
             )
@@ -129,8 +127,7 @@ struct LoginPade: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("purple"))
         
-        //Clearing data when changes
-        //Optional
+        
         .onChange(of: loginData.registerUser) { newValue in
             loginData.email = ""
             loginData.password = ""
@@ -162,7 +159,6 @@ struct LoginPade: View {
             Divider()
                 .background(Color.black.opacity(0.4))
         }
-        //Showing Show button for password field
         .overlay(
             Group {
                 if title.contains("Password") {

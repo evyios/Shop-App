@@ -37,7 +37,7 @@ struct MainPage: View {
             }
             //Custom Tab Bar
             HStack(spacing: 0) {
-                ForEach(Tab.allCases,id: \.self) { tab in
+                ForEach(Tab.allCases, id: \.self) { tab in
                     Button {
                         currentTab = tab
                     } label: {
@@ -48,8 +48,8 @@ struct MainPage: View {
                             .frame(width: 30, height: 30)
                             .background(
                                 Color("purple")
-                                    .opacity(0.1)
-                                    .cornerRadius(5)
+                                    .opacity(0.15)
+                                    .cornerRadius(25)
                                     .blur(radius: 5)
                                     .padding(-7)
                                     .opacity(currentTab == tab ? 1 : 0)
@@ -82,7 +82,7 @@ struct MainPage_Previews: PreviewProvider {
     }
 }
 
-// Tab cases
+
 enum Tab: String, CaseIterable {
     case Home = "Home"
     case Liked = "Liked"

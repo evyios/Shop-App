@@ -99,7 +99,7 @@ struct ProfilePage: View {
             )
         }
     }
-    //Avoiding new Structs...
+    
     @ViewBuilder
     func CustomNavigationLink<Detail: View>(title: String, @ViewBuilder content: @escaping () -> Detail) -> some View {
         
